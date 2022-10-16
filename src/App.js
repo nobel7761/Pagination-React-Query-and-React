@@ -2,14 +2,22 @@ import { useState } from "react";
 import TableHeader from "./components/tableHeader/TableHeader";
 import TableRow from "./components/tableRow/TableRow";
 import Pagination from "./components/pagination/Pagination";
+// Import the hook
+import { useUsers } from "./hooks/users";
 
 const App = () => {
   const [activePage, setActivePage] = useState(1);
 
+  // React Query takes care of calling
+  // userUsers hook when App.js is rendered.
+  const usersList = useUsers(activePage);
+
   return (
     <>
       <TableHeader />
-      <TableRow />
+      {/* map through users list */}
+      {usersList.data &&
+        usersList.data.data.map((user) => <TableRow user={user} />)}
       <Pagination
         activePage={activePage}
         setActivePage={setActivePage}

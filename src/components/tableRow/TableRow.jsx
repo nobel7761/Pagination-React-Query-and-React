@@ -1,16 +1,15 @@
 import "./TableRow.css";
 
-const TableRow = () => {
+const TableRow = ({ user }) => {
   return (
     <div className="table-row">
       <span>
-        <img
-          src="https://randomuser.me/api/portraits/men/88.jpg"
-          alt="avatar"
-        />
-        <span>Lukas Graham</span>
+        <img src={user.avatar} alt="avatar" />
+        <span>
+          {user.first_name} {user.last_name}
+        </span>
       </span>
-      <span>emailid@gmail.com</span>
+      <span>{user.email}</span>
     </div>
   );
 };
